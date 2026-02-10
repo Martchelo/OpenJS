@@ -1,6 +1,13 @@
 'use strict'
-
+const { promisify } = require('util')
 const fp = require('fastify-plugin')
+const timeout = promisify(setTimeout)
+
+const orders = {
+  A1: { total: 3 },
+  A2: { total: 7 },
+  B1: { total: 101 },
+}
 
 const catToPrefix = {
   electronics: 'A',
