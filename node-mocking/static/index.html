@@ -5,7 +5,13 @@
     <style>body {background: #fad8d8 }</style>
   </head>
   <body>
-    <nav><button id="fetch">Buscar Produtos</button></nav>
+    <nav>
+      <select id="category">
+        <option value="" hidden>Selecione a Categoria</option>
+        <option value="electronics">Eletrônicos</option>
+        <option value="confectionery">Confeitaria</option>
+      </select>
+    </nav>
     <hr>
     <div id="products"></div>
     <template id="item">
@@ -16,9 +22,7 @@
       </style>
        <details>
         <summary>
-          <strong>
-            <slot name="name"></slot>
-          </strong> - <em><slot name="rrp"></slot></em>
+          <strong><slot name="name"></slot></strong> - <em><slot name="rrp"></slot></em>
         </summary>
         <p><slot name="info"></slot></p>
       </details>
