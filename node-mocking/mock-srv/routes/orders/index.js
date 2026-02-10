@@ -17,13 +17,15 @@ module.exports = async function (fastify, opts) {
       }
     })
   }
+
   function sendCurrentOrders(category, socket) {
     for (const order of fastify.currentOrders(category)) {
       socket.send(order)
     }
   }
+  
   fastify.get(
-     '/:category',
+    '/:category',
     { websocket: true },
 
     //conn.socket === undefined
@@ -45,15 +47,12 @@ module.exports = async function (fastify, opts) {
         open = false
       })
 
-      //Discontinued!
-      /* for (const order of fastify.currentOrders(request.params.category)) {
-        if (!open) return //inserted to control
-        conn.send(order) //replaced 'socket' to 'conn'
-      }
-      for await (const order of fastify.realtimeOrders()) {
-        if (!open) break //replaced for "if (socket.readyState >= socket.CLOSING) break"
-        conn.send(order) //replaced 'socket' to 'conn'
-      } */
     }
   )
+
+  fastify.post('/:id', async (request) => {
+    const { id } = request.params
+    fastify.addOrder(id, request.body.amount)
+    return { ok: true }
+  })
 }
