@@ -1,9 +1,9 @@
 const API = 'http://localhost:3000'
 
-const populateProducts = async () => {
+const populateProducts = async (category) => {
   const products = document.querySelector('#products')
   products.innerHTML = ''
-  const res = await fetch(API)
+  const res = await fetch(`${API}/${category}`)
   const data = await res.json()
   for (const product of data) {
     const item = document.createElement('product-item')
@@ -17,11 +17,11 @@ const populateProducts = async () => {
   }
 }
 
-document.querySelector('#fetch').addEventListener('click', async () => {
-  await populateProducts()
-})
+const category = document.querySelector('#category')
 
- 
+category.addEventListener('input', async ({ target }) => {
+  await populateProducts(target.value)
+}) 
 
 customElements.define('product-item', class Item extends HTMLElement {
   constructor() {
