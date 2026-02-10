@@ -3,7 +3,7 @@
 const path = require('node:path')
 const AutoLoad = require('@fastify/autoload')
 const cors = require('@fastify/cors')
-const websocket = require('fastify-websocket')
+const websocket = require('@fastify/websocket')
 
 module.exports = async function (fastify, opts) {
   fastify.register(cors)
