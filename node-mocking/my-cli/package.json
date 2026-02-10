@@ -12,7 +12,10 @@
   "bin": "./cmd.js",
   "type": "module",
   "dependencies": {
+    "ansi-escapes": "^7.3.0",
+    "chalk": "^5.6.2",
     "commist": "^3.2.0",
+    "enquirer": "^2.4.1",
     "got": "^14.6.6",
     "minimist": "^1.2.8"
   }
